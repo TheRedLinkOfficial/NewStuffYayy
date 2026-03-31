@@ -54,7 +54,46 @@ public class AudioManager : MonoBehaviour
     }
         
         
-        #endregion audioplayback
+    #endregion audioplayback
+        
+        #region audio3d
+        
+        public void play(AudioClip clip, AudioSource source)
+        {
+            if (!activeSources.Contains(source))
+            {
+                activeSources.Add(source);
+            }
+            systemsource.Stop();
+            systemsource.clip = clip;
+            systemsource.Play();
+        }
+
+       
+
+        public void stop(AudioSource source)
+        {
+            if (activeSources.Contains(source))
+            {
+                activeSources.Remove(source);
+            }
+            source.Stop();
+        }
+
+        public void pause(AudioSource source)
+        {
+            source.Pause();
+        }
+
+        public void resume(AudioSource source)
+        {
+            source.UnPause();
+        }
+        public void playoneshot(AudioClip clip, AudioSource source)
+        {
+            source.PlayOneShot(clip);
+        }
+        #endregion audio3d
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
